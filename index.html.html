@@ -1,0 +1,772 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8" />
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+<title>My Portfolio</title>
+
+<style>
+
+  /* Reset & base */
+
+  * {
+
+    box-sizing: border-box;
+
+    margin: 0;
+
+    padding: 0;
+
+  }
+
+  body {
+
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+
+    line-height: 1.6;
+
+    background-color: var(--bg);
+
+    color: var(--text);
+
+    transition: background-color 0.5s ease, color 0.5s ease;
+
+    min-height: 100vh;
+
+    display: flex;
+
+    flex-direction: column;
+
+  }
+
+  :root {
+
+    --bg: #f9f9f9;
+
+    --text: #222;
+
+    --primary: #2a9d8f;
+
+    --secondary: #264653;
+
+    --accent: #e9c46a;
+
+    --input-bg: #fff;
+
+    --input-border: #ccc;
+
+    --btn-bg: var(--primary);
+
+    --btn-text: #fff;
+
+    --shadow: rgba(0, 0, 0, 0.1);
+
+  }
+
+  [data-theme="dark"] {
+
+    --bg: #121212;
+
+    --text: #e0e0e0;
+
+    --primary: #14b8a6;
+
+    --secondary: #90cdf4;
+
+    --accent: #f4a261;
+
+    --input-bg: #222;
+
+    --input-border: #444;
+
+    --btn-bg: var(--primary);
+
+    --btn-text: #121212;
+
+    --shadow: rgba(255, 255, 255, 0.1);
+
+  }
+
+  /* Container */
+
+  .container {
+
+    max-width: 900px;
+
+    margin: 0 auto;
+
+    padding: 1rem 1.5rem 3rem;
+
+    flex-grow: 1;
+
+  }
+
+  .img-box img{
+    border-radius: 50%;
+    width: 550px;
+  }
+
+
+
+  /* Header */
+
+  header {
+
+    display: flex;
+
+    justify-content: space-between;
+
+    align-items: center;
+
+    padding: 1rem 1.5rem;
+
+    background-color: var(--primary);
+
+    color: var(--btn-text);
+
+    box-shadow: 0 2px 6px var(--shadow);
+
+    position: sticky;
+
+    top: 0;
+
+    z-index: 100;
+
+  }
+
+  header h1 {
+
+    font-size: 1.5rem;
+
+    user-select: none;
+
+  }
+
+  .theme-switcher {
+
+    background: none;
+
+    border: 2px solid var(--btn-text);
+
+    border-radius: 20px;
+
+    width: 48px;
+
+    height: 24px;
+
+    position: relative;
+
+    cursor: pointer;
+
+    outline-offset: 2px;
+
+    transition: background-color 0.3s ease;
+
+  }
+
+  .theme-switcher:focus {
+
+    outline: 2px solid var(--accent);
+
+  }
+
+  .switcher-thumb {
+
+    position: absolute;
+
+    top: 2px;
+
+    left: 2px;
+
+    width: 20px;
+
+    height: 20px;
+
+    background-color: var(--btn-text);
+
+    border-radius: 50%;
+
+    transition: transform 0.3s ease;
+
+  }
+
+  [data-theme="dark"] .switcher-thumb {
+
+    transform: translateX(24px);
+
+  }
+
+  /* Section Titles */
+
+  h2 {
+
+    font-size: 2rem;
+
+    margin-bottom: 1rem;
+
+    color: var(--secondary);
+
+    border-bottom: 3px solid var(--accent);
+
+    display: inline-block;
+
+    padding-bottom: 0.25rem;
+
+  }
+
+  /* Homepage */
+
+  #home {
+
+    padding: 2rem 0;
+
+    animation: fadeInUp 1s ease forwards;
+
+  }
+
+  #home .intro {
+
+    margin-bottom: 1rem;
+
+  }
+
+  #home .name {
+
+    font-size: 2.5rem;
+
+    font-weight: 700;
+
+    color: var(--primary);
+
+    margin-bottom: 0.25rem;
+
+  }
+
+  #home .bio {
+
+    font-size: 1.125rem;
+
+    color: var(--text);
+
+    max-width: 600px;
+
+  }
+
+  #home .skills {
+
+    margin-top: 1.5rem;
+
+    display: flex;
+
+    flex-wrap: wrap;
+
+    gap: 0.5rem;
+
+  }
+
+  #home .skill {
+
+    background-color: var(--accent);
+
+    color: var(--secondary);
+
+    padding: 0.25rem 0.7rem;
+
+    border-radius: 20px;
+
+    font-weight: 600;
+
+    font-size: 0.9rem;
+
+    user-select: none;
+
+    box-shadow: 1px 1px 3px var(--shadow);
+
+  }
+
+  /* Portfolio */
+
+
+  .achievements{
+  margin-top: 30px;
+  text-align: center;
+  padding: 0 20px;
+}
+
+.achievements-grid{
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    padding: 20px;
+    rgin-top: 20px;
+}
+
+.achievements-grid img{
+    width: 100%;
+    border-radius: 8px;
+    box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.2);
+    display: block;
+    transition: 0.3s ease;
+
+}
+
+.achievements-grid img:hover{
+    transform: scale(1.1);
+}
+
+  .projects h3 {
+
+    color: var(--primary);
+
+    margin-bottom: 0.5rem;
+
+  }
+
+  .projects p {
+
+    font-size: 0.95rem;
+
+    color: var(--text);
+
+  }
+
+  /* Contact */
+
+  #contact {
+
+    padding: 2rem 0 3rem;
+
+    animation: fadeInUp 1.4s ease forwards;
+
+  }
+
+  form {
+
+    max-width: 500px;
+
+    margin-top: 1rem;
+
+  }
+
+  label {
+
+    display: block;
+
+    font-weight: 600;
+
+    margin-bottom: 0.3rem;
+
+    color: var(--secondary);
+
+  }
+
+  input[type="text"],
+
+  input[type="email"],
+
+  textarea {
+
+    width: 100%;
+
+    border: 2px solid var(--input-border);
+
+    border-radius: 6px;
+
+    padding: 0.5rem 0.75rem;
+
+    font-size: 1rem;
+
+    font-family: inherit;
+
+    background-color: var(--input-bg);
+
+    color: var(--text);
+
+    transition: border-color 0.3s ease;
+
+  }
+
+  input[type="text"]:focus,
+
+  input[type="email"]:focus,
+
+  textarea:focus {
+
+    outline: none;
+
+    border-color: var(--primary);
+
+    box-shadow: 0 0 6px var(--primary);
+
+  }
+
+  textarea {
+
+    min-height: 100px;
+
+    resize: vertical;
+
+  }
+
+  .error-message {
+
+    color: #e63946;
+
+    font-size: 0.9rem;
+
+    margin-top: 0.2rem;
+
+    display: none;
+
+  }
+
+  .error-visible {
+
+    display: block;
+
+  }
+
+  button[type="submit"] {
+
+    margin-top: 1rem;
+
+    background-color: var(--btn-bg);
+
+    color: var(--btn-text);
+
+    border: none;
+
+    border-radius: 30px;
+
+    padding: 0.65rem 2.2rem;
+
+    font-weight: 700;
+
+    font-size: 1rem;
+
+    cursor: pointer;
+
+    box-shadow: 0 4px 8px var(--shadow);
+
+    transition: background-color 0.3s ease;
+
+  }
+  button[type="submit"]:hover,
+
+  button[type="submit"]:focus {
+
+    background-color: var(--accent);
+
+    color: var(--secondary);
+
+    outline: none;
+
+  }
+
+  /* Footer */
+
+  footer {
+
+    text-align: center;
+
+    padding: 1rem 1.5rem;
+
+    background-color: var(--primary);
+
+    color: var(--btn-text);
+
+    font-size: 0.9rem;
+
+    user-select: none;
+
+    box-shadow: 0 -2px 6px var(--shadow);
+
+  }
+
+  /* Animations */
+
+  @keyframes fadeInUp {
+
+    from {
+
+      opacity: 0;
+
+      ttransform: translateY(20px);
+
+    }
+
+    to {
+
+      opacity: 1;
+
+      transform: translateY(0);
+
+    }
+
+  }
+
+  /* Responsive */
+
+  @media (max-width: 600px) {
+
+    header h1 {
+
+      font-size: 1.25rem;
+
+    }
+
+    #home .name {
+
+      font-size: 2rem;
+
+    }
+
+    #portfolio .projects {
+
+      grid-template-columns: 1fr;
+
+    }
+
+    body {
+      font-size: 0.95rem;
+
+    }
+
+  }
+
+</style>
+
+</head>
+
+<body>
+
+<header>
+
+  <h1>"My Portfolio Website"</h1>
+
+  <button class="theme-switcher" aria-label="Toggle theme" title="Toggle theme">
+
+    <span class="switcher-thumb"></span>
+
+  </button>
+
+</header>
+
+<main class="container" role="main">
+
+  <section id="home" tabindex="0" aria-labelledby="home-title">
+    
+    
+
+    <h2 id="home-title">WELCOME!</h2>
+
+    <div class="intro">
+
+      <div class="name"> Hi! I,m Rose Jane Erese</div>
+
+      <p class="bio">I am <strong> 20 years old</strong> and living in <strong> Telapayong, Arayat Pampanga</stong>. currently studying <strong> Bachelor of Science and Information Technology</strong> and learning how to create <strong> Websites</strong> while enjoying hobbies like<strong> playing volleyball, watching movies, and cooking.</strong></p>
+      <p> Ten years from now, I see myself as a <strong> financially stable, having a 2 businesses like restaurant and buy and sell,  travel around the world and having 2 kids to the someone I love. </strong></p> 
+
+    </div>
+    <div class="skills" aria-label="Skills and interests">
+
+      <div class="skill">JavaScript</div>
+
+      <div class="skill">Playing volleyball</div>
+
+      <div class="skill">Cooking</div>
+
+      <div class="skill">Photography</div>
+
+      <div class="skill">Traveling</div>
+
+    </div>
+
+  </section>
+
+  <section id="achievements" tabindex="0" aria-labelledby="achievements-title">
+
+    <h2 id="achievements-title"> My Achievements</h2>
+
+    <div class="projects">
+
+        <img src="image/html.png"/>
+
+        <h3 id="proj1-title">Introduction to HTML</h3>
+
+        <p> it is the standard language used to create and design pages on the web. It tells web browsers how to display text, images, links, and other content on a webpage.</p>
+
+    
+   
+
+        <img src="image/css.png"/>
+
+        <h3 id="proj2-title">Introduction to CSS</h3>
+
+        <p>like changing colors, fonts, spacing, layout, and more. While HTML builds the structure, CSS makes it look nice.</p>
+
+  
+
+      
+
+        <img src="image/js.png"/>
+
+        <h3 id="proj3-title">Introduction to JavaScript</h3>
+
+        <p>is a programming language used to make web pages interactive.</p>
+
+      
+    </div>
+
+  </section>
+
+  <section id="contact" tabindex="0" aria-labelledby="contact-title">
+
+    <h2 id="contact-title">Contact Me</h2>
+
+    <form id="contactForm" novalidate>
+      <li><a href="https://www.facebook.com/rosejane.erese.7"target="_blank">Facebook </a></li> 
+       
+      <label for="name">Name<span aria-hidden="true">*</span></label>
+
+      <input type="text" id="name" name="name" placeholder="Your full name" required aria-required="true" />
+
+      <div class="error-message" id="name-error">Please enter your name.</div>
+      <label for="email">Email<span aria-hidden="true">*</span></label>
+
+      <input type="email" id="email" name="email" placeholder="you@example.com" required aria-required="true" />
+
+      <div class="error-message" id="email-error">Please enter a valid email address.</div>
+
+      <label for="message">Message<span aria-hidden="true">*</span></label>
+
+      <textarea id="message" name="message" placeholder="Write your message here..." required aria-required="true"></textarea>
+
+      <div class="error-message" id="message-error">Please enter a message.</div>
+
+      <button type="submit">Send</button>
+
+    </form>
+
+  </section>
+
+</main>
+
+<footer>
+
+  &copy; 2025 Rose Jane Erese. All rights reserved.
+
+</footer>
+
+<script>
+
+  // Theme switcher
+
+  (function() {
+    const btn = document.querySelector('.theme-switcher');
+
+    const root = document.documentElement;
+
+    const currentTheme = localStorage.getItem('theme') || 'light';
+
+    function setTheme(theme) {
+
+      if(theme === 'dark') {
+
+        root.setAttribute('data-theme', 'dark');
+
+      } else {
+
+        root.removeAttribute('data-theme');
+
+      }
+
+      localStorage.setItem('theme', theme);
+
+    }
+
+    setTheme(currentTheme);
+
+    btn.addEventListener('click', () => {
+
+      const newTheme = root.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+
+      setTheme(newTheme);
+
+    });
+
+  })();
+  // Contact form validation
+
+  document.getElementById('contactForm').addEventListener('submit', function(e) {
+
+    e.preventDefault();
+
+    // Clear previous errors
+
+    const errors = document.querySelectorAll('.error-message');
+
+    errors.forEach(error => error.classList.remove('error-visible'));
+
+    let valid = true;
+
+    // Validate name
+
+    const nameInput = document.getElementById('name');
+
+    if(!nameInput.value.trim()) {
+
+      document.getElementById('name-error').classList.add('error-visible');
+
+      valid = false;
+
+    }
+
+    // Validate email
+    const emailInput = document.getElementById('email');
+
+    const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+    if(!emailInput.value.trim() || !emailPattern.test(emailInput.value.trim())) {
+
+      document.getElementById('email-error').classList.add('error-visible');
+
+      valid = false;
+
+    }
+
+    // Validate message
+
+    const messageInput = document.getElementById('message');
+
+    if(!messageInput.value.trim()) {
+
+      document.getElementById('message-error').classList.add('error-visible');
+
+      valid = false;
+
+    }
+
+    if(valid) {
+
+      alert('Thank you for your message! I will get back to you soon.');
+
+      this.reset();
+
+    }
+
+  });
+
+</script>
+
+</body>
+
+</html>
+
+</content>
+
+</create_file>
